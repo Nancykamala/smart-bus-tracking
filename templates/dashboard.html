@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart College Bus Tracking System</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <style>
+    /* Background Styles */
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+    /* Title Styles */
+    .title {
+      position: absolute;
+      top: 20px; /* Adjust top margin for positioning */
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      font-weight: bold;
+    }
+    /* Tags Styles */
+    .tags {
+      position: absolute;
+      top: 20px; /* Adjust top margin for positioning */
+      right: 20px; /* Adjust right margin for positioning */
+      font-size: 16px;
+    }
+    /* Dashboard Styles */
+    .dashboard {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 250px;
+      background-color: rgba(255, 255, 255, 0.1); /* Transparent white background */
+      padding: 20px;
+      overflow-y: auto;
+    }
+    /* Map Container Styles */
+    #map {
+      display: none; /* Hide map initially */
+      position: absolute;
+      top: 60px; /* Adjust top margin to position below title */
+      left: 250px; /* Adjust left margin to avoid overlap with dashboard */
+      width: calc(100% - 250px); /* Adjust width to fill remaining space */
+      height: calc(100% - 60px); /* Adjust height to fill remaining space */
+      z-index: 1; /* Ensure map appears above other elements */
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Image -->
+  <div class="cover-image" style="background-image: url('https://www.vectorstock.com/royalty-free-vector/ui-design-website-template-for-business-vector-22900128.jpg'); background-size: cover; background-position: center; height: 100vh;"></div>
+  <!-- Project Title -->
+  <div class="title">Smart College Bus Tracking System</div>
+  <!-- Tags -->
+  <div class="tags">
+    <a href="#">Home</a> |
+    <a href="#">About</a> |
+    <a href="#">Profile</a> |
+    <a href="#">Contact</a>
+    <!-- Add more tags as needed -->
+  </div>
+  <!-- Dashboard Content -->
+  <div class="dashboard">
+    <h2>Dashboard</h2>
+    <ul class="list-group">
+      <li class="list-group-item"><a href="#">Occupancy Detection</a></li>
+      <li class="list-group-item"><a href="#" onclick="showMap()">Real-Time Tracking</a></li>
+      <li class="list-group-item"><a href="#">Traffic Analysis</a></li>
+      <li class="list-group-item"><a href="#">Route Optimization</a></li>
+      <li class="list-group-item"><a href="#">Driver Details</a></li>
+      <li class="list-group-item"><a href="#">User Profile</a></li>
+      <li class="list-group-item"><a href="#">Notifications</a></li>
+      <li class="list-group-item"><a href="#">Help & Support</a></li>
+      <!-- Add more options as needed -->
+    </ul>
+  </div>
+  <!-- Google Maps API -->
+  <div id="map"></div>
+  <!-- Bootstrap JS (Optional) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    function showMap() {
+      document.getElementById('map').style.display = 'block';
+
+      // Get current location
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const currentLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        // Create map centered at current location
+        const map = new google.maps.Map(document.getElementById('map'), {
+          center: currentLocation,
+          zoom: 15, // Adjust zoom level as needed
+          // Add more map options as needed
+        });
+
+        // Add marker for current location
+        new google.maps.Marker({
+          position: currentLocation,
+          map: map,
+          title: 'Your Location'
+        });
+      });
+    }
+  </script>
+  <!-- Replace 'YOUR_API_KEY' with your actual Google Maps API key -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9PRoRCIxoH17fhBpa9vpAglANSF1kMwk&callback=showMap" async defer></script>
+</body>
+</html>
